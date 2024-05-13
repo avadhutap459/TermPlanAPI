@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SudLife_ProtectShield.APILayer.props" />
+</Project>

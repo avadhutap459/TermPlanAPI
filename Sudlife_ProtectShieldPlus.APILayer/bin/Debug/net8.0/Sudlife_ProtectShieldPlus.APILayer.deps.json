@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Sudlife_ProtectShieldPlus.APILayer/1.0.0": {
+        "runtime": {
+          "Sudlife_ProtectShieldPlus.APILayer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Sudlife_ProtectShieldPlus.APILayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

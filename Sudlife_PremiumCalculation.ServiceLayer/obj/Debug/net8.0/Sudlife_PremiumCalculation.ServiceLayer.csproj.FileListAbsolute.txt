@@ -1,0 +1,11 @@
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\bin\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.deps.json
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\bin\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.dll
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\bin\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.pdb
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.AssemblyInfoInputs.cache
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.AssemblyInfo.cs
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.csproj.CoreCompileInputs.cache
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.dll
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\refint\Sudlife_PremiumCalculation.ServiceLayer.dll
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\Sudlife_PremiumCalculation.ServiceLayer.pdb
+C:\Users\32330\Desktop\Bank Integration\SudLife_Premiumcalculation.APILayer\Sudlife_PremiumCalculation.ServiceLayer\obj\Debug\net8.0\ref\Sudlife_PremiumCalculation.ServiceLayer.dll

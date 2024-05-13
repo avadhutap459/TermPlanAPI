@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\SudLife_Premiumcalculation.APILayer.props" />
+</Project>

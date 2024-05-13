@@ -1,0 +1,6 @@
+@Sudlife_SaralJeevan.APILayer_HostAddress = http://localhost:5051
+
+GET {{Sudlife_SaralJeevan.APILayer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

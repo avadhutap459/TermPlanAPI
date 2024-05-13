@@ -1,0 +1,6 @@
+@SudLife_Premiumcalculation.APILayer_HostAddress = http://localhost:5073
+
+GET {{SudLife_Premiumcalculation.APILayer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

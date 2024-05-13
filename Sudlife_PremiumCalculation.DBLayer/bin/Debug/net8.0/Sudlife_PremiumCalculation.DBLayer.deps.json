@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Sudlife_PremiumCalculation.DBLayer/1.0.0": {
+        "runtime": {
+          "Sudlife_PremiumCalculation.DBLayer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Sudlife_PremiumCalculation.DBLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SudLife_Premiumcalculation.APILayer.props" />
+</Project>

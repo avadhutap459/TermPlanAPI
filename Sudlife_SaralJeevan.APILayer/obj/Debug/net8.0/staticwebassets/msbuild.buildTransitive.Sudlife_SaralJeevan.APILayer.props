@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Sudlife_SaralJeevan.APILayer.props" />
-</Project>

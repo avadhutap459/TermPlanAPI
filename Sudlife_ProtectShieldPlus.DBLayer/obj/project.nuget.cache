@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zP88Vh1a6+KXfcqtrKe6atzTCzAlbhXNLaH3hWjmt1JdpfxChOB8KV7GhqzThSgSfD6xAD9gKRFR+2SFBttjxQ==",
+  "dgSpecHash": "6g+L5Wje2FVk06TvB5+jtQmV6Qkvl6mmCpz+aS6INJ51XYbu2rgPl0vpgXH+miX7TbeYjhTRi9hHWIgpmWfSqw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_ProtectShieldPlus.DBLayer\\Sudlife_ProtectShieldPlus.DBLayer.csproj",
+  "projectFilePath": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_ProtectShieldPlus.DBLayer\\Sudlife_ProtectShieldPlus.DBLayer.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

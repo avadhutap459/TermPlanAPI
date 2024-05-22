@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sudlife_PremiumCalculation.DBLayer\Sudlife_PremiumCalculation.DBLayer.csproj" />
-  </ItemGroup>
-
 </Project>

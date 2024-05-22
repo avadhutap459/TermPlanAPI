@@ -1,51 +1,32 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
-      "Sudlife_PremiumCalculation.DBLayer/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Sudlife_PremiumCalculation.DBLayer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Sudlife_PremiumCalculation.DBLayer.dll": {}
-        }
-      }
-    }
+    "net8.0": {}
   },
-  "libraries": {
-    "Sudlife_PremiumCalculation.DBLayer/1.0.0": {
-      "type": "project",
-      "path": "../Sudlife_PremiumCalculation.DBLayer/Sudlife_PremiumCalculation.DBLayer.csproj",
-      "msbuildProject": "../Sudlife_PremiumCalculation.DBLayer/Sudlife_PremiumCalculation.DBLayer.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0": [
-      "Sudlife_PremiumCalculation.DBLayer >= 1.0.0"
-    ]
+    "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\32330\\.nuget\\packages\\": {},
+    "C:\\Users\\34883\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_PremiumCalculation.ServiceLayer\\Sudlife_PremiumCalculation.ServiceLayer.csproj",
+      "projectUniqueName": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_PremiumCalculation.ServiceLayer\\Sudlife_PremiumCalculation.ServiceLayer.csproj",
       "projectName": "Sudlife_PremiumCalculation.ServiceLayer",
-      "projectPath": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_PremiumCalculation.ServiceLayer\\Sudlife_PremiumCalculation.ServiceLayer.csproj",
-      "packagesPath": "C:\\Users\\32330\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_PremiumCalculation.ServiceLayer\\obj\\",
+      "projectPath": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_PremiumCalculation.ServiceLayer\\Sudlife_PremiumCalculation.ServiceLayer.csproj",
+      "packagesPath": "C:\\Users\\34883\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_PremiumCalculation.ServiceLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\32330\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\34883\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -60,22 +41,13 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_PremiumCalculation.DBLayer\\Sudlife_PremiumCalculation.DBLayer.csproj": {
-              "projectPath": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_PremiumCalculation.DBLayer\\Sudlife_PremiumCalculation.DBLayer.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -92,12 +64,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

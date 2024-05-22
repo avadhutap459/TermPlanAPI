@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sudlife_ProtectShieldPlus.DBLayer\Sudlife_ProtectShieldPlus.DBLayer.csproj" />
-  </ItemGroup>
-
 </Project>

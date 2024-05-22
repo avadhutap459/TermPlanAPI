@@ -8,25 +8,25 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\32330\\.nuget\\packages\\": {},
+    "C:\\Users\\34883\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_ProtectShield.DBLayer\\Sudlife_ProtectShield.DBLayer.csproj",
+      "projectUniqueName": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_ProtectShield.DBLayer\\Sudlife_ProtectShield.DBLayer.csproj",
       "projectName": "Sudlife_ProtectShield.DBLayer",
-      "projectPath": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_ProtectShield.DBLayer\\Sudlife_ProtectShield.DBLayer.csproj",
-      "packagesPath": "C:\\Users\\32330\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\32330\\Desktop\\Bank Integration\\SudLife_Premiumcalculation.APILayer\\Sudlife_ProtectShield.DBLayer\\obj\\",
+      "projectPath": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_ProtectShield.DBLayer\\Sudlife_ProtectShield.DBLayer.csproj",
+      "packagesPath": "C:\\Users\\34883\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub2023\\TermPlanAPI\\Sudlife_ProtectShield.DBLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\32330\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\34883\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -48,11 +48,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -69,12 +64,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

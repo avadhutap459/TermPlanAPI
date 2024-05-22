@@ -3,13 +3,11 @@
 ################################################################################
 
 /.vs
-/SudLife_Premiumcalculation.APILayer/bin/Debug/net8.0
-/SudLife_Premiumcalculation.APILayer/obj/Debug/net8.0
+/SudLife_Premiumcalculation.APILayer/bin
 /SudLife_Premiumcalculation.APILayer/obj
-/SudLife_ProtectShield.APILayer/bin/Debug/net8.0
-/SudLife_ProtectShield.APILayer/obj/Debug/net8.0
+/SudLife_ProtectShield.APILayer/bin
 /SudLife_ProtectShield.APILayer/obj
-/Sudlife_ProtectShieldPlus.APILayer/bin/Debug/net8.0
+/Sudlife_ProtectShieldPlus.APILayer/bin
 /Sudlife_ProtectShieldPlus.APILayer/obj
-/Sudlife_SaralJeevan.APILayer/bin/Debug/net8.0
+/Sudlife_SaralJeevan.APILayer/bin
 /Sudlife_SaralJeevan.APILayer/obj

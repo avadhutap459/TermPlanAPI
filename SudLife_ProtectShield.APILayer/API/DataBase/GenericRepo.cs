@@ -14,7 +14,7 @@ namespace SudLife_ProtectShield.APILayer.API.Database
         private readonly string _connectionString;
         string connection = string.Empty;
         string PrivateKey = string.Empty;
-        
+
 
         private readonly ILogger<GenericRepo> _logger;
 
@@ -59,6 +59,7 @@ namespace SudLife_ProtectShield.APILayer.API.Database
                 }
                 catch (Exception ex)
                 {
+                    logger.Error("Save service log : " + ex);
                     throw;
                 }
                 finally
@@ -95,6 +96,7 @@ namespace SudLife_ProtectShield.APILayer.API.Database
                 }
                 catch (Exception ex)
                 {
+                    logger.Error("Save error log : " + ex);
                     throw;
                 }
                 finally

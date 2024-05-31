@@ -39,7 +39,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
                 Logid = Convert.ToInt32(Insert);
 
                 #region ValueAssignment
-                logger.Info("Entered ProtectShieldPlus Service");
+
 
 
 
@@ -103,7 +103,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
 
                 #region ListRequestCreation
 
-                logger.Info("List Creation Started");
+
                 List<SDEBaseKeyValuePair> lstkeyvalue = new List<SDEBaseKeyValuePair>
             {
                 new SDEBaseKeyValuePair { key = "@LI_FNAME", value = objProtectShieldPlusRequest.ApplicantDetails.ApplicantFName },
@@ -156,26 +156,18 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
                 new SDEBaseKeyValuePair { key = "@OPTION_VALUE_1", value = ""},
 
 
-
-
-
         };
-
-
 
                 #endregion
 
-                logger.Info("List Creation Ended");
+
 
                 #region Rider
 
-
-
                 List<Rider> riderList = new List<Rider>();
 
-
-
                 #endregion
+
                 #region ConsumeAPI
                 string APIKey = _CommonOperations.APIKey();
 
@@ -196,11 +188,8 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
 
                 DateTime RequestTime = DateTime.Now;
 
-                logger.Info("API consumption Started");
-
                 dynamic ResponseFromNsureservice = _CommonOperations.ConsumeSDEAPI(APIRequest, "premium");
 
-                logger.Info("API consumption Ended");
                 #endregion
 
 
@@ -269,13 +258,8 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
                 }
 
 
-
-
-
-
                 string DecResponse = _JsonConvert.SerializeObject(objPremiumResponse);
                
-
                 dynamic Update = await _IGenericRepo.SaveServiceLog("Update", SourceId, Logid, "", DecResponse, "", "Admin", ProductID);
 
                 return objPremiumResponse;
@@ -284,10 +268,11 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
             {
                 int a = Logid;
                 var ErrorResult = await _IGenericRepo.SaveErrorLog(a, ex.ToString());
-               throw ex;
-               
+
+                throw ex;
+
             }
         }
-        
+
     }
 }

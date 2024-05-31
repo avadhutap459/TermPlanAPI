@@ -29,16 +29,6 @@ namespace SudLife_ProtectShield.APILayer.API.Global.FException
             catch (Exception ex)
             {
 
-                logger.Info("Entered ExceptionMiddleware");
-                logger.Info("Exception ex: " + ex.ToString());
-                var url1 = context.Request.GetDisplayUrl();
-
-                String[] strlist = url1.Split("/");
-                string ControllerName = strlist[3];
-                string ActionMethodName = strlist[4];
-
-
-
                 await HandleException(context, ex);
 
             }

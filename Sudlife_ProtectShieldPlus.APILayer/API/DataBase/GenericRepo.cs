@@ -56,6 +56,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Database
                 }
                 catch (Exception ex)
                 {
+                    logger.Error("Save Service Log : " + ex);
                     throw;
                 }
                 finally
@@ -67,7 +68,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Database
 
         }
 
-        public async Task<string> SaveErrorLog( int Logid, string ErrorDescription)
+        public async Task<string> SaveErrorLog(int Logid, string ErrorDescription)
         {
             string connection = _configuration.GetSection("ConnectionStrings:DBConnection").Value;
             string spName = "[dbo].[StpSaveErrorLogs]";
@@ -84,7 +85,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Database
 
                     var param = new DynamicParameters();
                     param.Add("@Logid", Logid);
-                    param.Add("@CreatedBy", "Admin");                  
+                    param.Add("@CreatedBy", "Admin");
                     param.Add("@ErrorDescription", ErrorDescription);
 
                     var result = await con.QueryAsync<string>(spName, param, commandTimeout: 120, commandType: CommandType.StoredProcedure);
@@ -92,6 +93,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Database
                 }
                 catch (Exception ex)
                 {
+                    logger.Error("Save Error Log : " + ex);
                     throw;
                 }
                 finally

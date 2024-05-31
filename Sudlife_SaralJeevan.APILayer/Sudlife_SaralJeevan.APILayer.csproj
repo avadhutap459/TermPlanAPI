@@ -14,6 +14,7 @@
     <Folder Include="API\Global\Filter\" />
     <Folder Include="API\Model\" />
     <Folder Include="API\Service\" />
+    <Folder Include="Logger\" />
 	</ItemGroup>
 
 	<ItemGroup>

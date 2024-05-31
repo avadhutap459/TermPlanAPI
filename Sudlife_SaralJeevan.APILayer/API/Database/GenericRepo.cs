@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
+using NLog;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,13 +12,15 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
 
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
-     
 
-       
-        public GenericRepo(IConfiguration configuration)
+        private readonly ILogger<GenericRepo> _logger;
+
+        private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+        public GenericRepo(IConfiguration configuration, ILogger<GenericRepo> logger)
         {
             _configuration = configuration;
-        
+            _logger = logger;
             _connectionString = _configuration.GetConnectionString("DBConnection");
 
         }
@@ -39,7 +42,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
                 
                     var param = new DynamicParameters();
                     param.Add("@LogId", LogId);
-                    param.Add("@SourceId", SourceId);
+                   // param.Add("@SourceId", SourceId);
                     param.Add("@ProductId", ProductId);
                     param.Add("@PlainReq", PlainReq);
                     param.Add("@PlainRes", PlainRes);
@@ -54,6 +57,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
                 }
                 catch (Exception ex)
                 {
+                    logger.Error("SaveServiceLog Error :--------" + ex);
                     throw;
                 }
                 finally
@@ -90,6 +94,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
                 }
                 catch (Exception ex)
                 {
+                    logger.Error("SaveErrorLog Error :----------" + ex);
                     throw;
                 }
                 finally

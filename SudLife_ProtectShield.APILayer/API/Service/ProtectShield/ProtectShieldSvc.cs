@@ -96,8 +96,6 @@ namespace SudLife_ProtectShield.APILayer.API.Service.ProtectShield
 
                 #region ListRequestCreation
 
-                logger.Info("List Creation Started");
-
                 List<SDEBaseKeyValuePair> lstkeyvalue = new List<SDEBaseKeyValuePair>
                 {
                     new SDEBaseKeyValuePair { key = "@LI_FNAME", value = objProtectShieldRequest.ApplicantDetails.ApplicantFName },
@@ -168,9 +166,7 @@ namespace SudLife_ProtectShield.APILayer.API.Service.ProtectShield
 
                 #endregion
 
-                logger.Info("List Creation Ended");
-
-
+               
                 #region Rider
 
                 string Rider1Value = Convert.ToString(objProtectShieldRequest.ADTPDRiderSA);
@@ -221,11 +217,8 @@ namespace SudLife_ProtectShield.APILayer.API.Service.ProtectShield
 
                 DateTime RequestTime = DateTime.Now;
 
-                logger.Info("API consumption Started");
-
                 dynamic ResponseFromNsureservice = _CommonOperations.ConsumeSDEAPI(APIRequest, "premium");
 
-                logger.Info("API consumption Ended");
                 #endregion
 
 
@@ -313,7 +306,6 @@ namespace SudLife_ProtectShield.APILayer.API.Service.ProtectShield
 
                 string DecResponse = _JsonConvert.SerializeObject(objPremiumResponse);
                 
-
                 dynamic Update = await _IGenericRepo.SaveServiceLog("Update", SourceId, Logid, "", DecResponse, "", "Admin", ProductID);
 
                 return objPremiumResponse;
@@ -322,6 +314,7 @@ namespace SudLife_ProtectShield.APILayer.API.Service.ProtectShield
             {
                 int a = Logid;
                 var ErrorResult = await _IGenericRepo.SaveErrorLog(a, ex.ToString());
+
                 throw ex;
             }
 

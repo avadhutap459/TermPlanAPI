@@ -1,3 +1,4 @@
+using NLog;
 using SudLife_ProtectShield.APILayer.API.Database;
 using SudLife_ProtectShield.APILayer.API.Global.FException;
 using SudLife_ProtectShield.APILayer.API.Service.Common;
@@ -7,6 +8,10 @@ using SudLife_ProtectShield.APILayer.API.Service.ProtectShield;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+LogManager.LoadConfiguration(string.Concat(System.Environment.CurrentDirectory, "/nlog.config"));
+
+LogManager.Configuration.Variables["mydir"] = string.Concat(System.Environment.CurrentDirectory, "/Logger");
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<IGenericRepo, GenericRepo>();

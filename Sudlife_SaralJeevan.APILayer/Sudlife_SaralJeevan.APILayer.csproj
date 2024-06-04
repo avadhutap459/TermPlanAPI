@@ -11,7 +11,7 @@
     <Folder Include="API\Controller\" />
     <Folder Include="API\Database\" />
     <Folder Include="API\Global\FException\" />
-    <Folder Include="API\Global\Filter\" />
+	<Folder Include="API\Global\Filter\" />
     <Folder Include="API\Model\" />
     <Folder Include="API\Service\" />
     <Folder Include="Logger\" />

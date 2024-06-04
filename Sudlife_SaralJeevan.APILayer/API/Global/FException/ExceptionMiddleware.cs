@@ -25,6 +25,8 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.FException
             {
 
                 await next(context);
+
+
             }
             catch (Exception ex)
             {
@@ -50,20 +52,23 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.FException
                     break;
             }
 
-            var errorResponse = new ErrorResponse
+            
+            List<string> Msgstr = new List<string>();
+            Msgstr.Add("Internal Server Error");
+
+            BaseResponse baseResponse = new BaseResponse()
             {
-                StatusCode = statusCode,
-                Message = ex.Message,
+                StatusCode = 500,
+                Message = Msgstr,
+                IsSuccess = false,
+                Data = null,
             };
 
-
-
-
-            string DecResponse = _JsonConvert.SerializeObject(errorResponse);
+            string ExcRes = _JsonConvert.SerializeObject(baseResponse);
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = statusCode;
-            context.Response.WriteAsync(errorResponse.ToString());
+            context.Response.WriteAsync(ExcRes.ToString());
 
         }
     }

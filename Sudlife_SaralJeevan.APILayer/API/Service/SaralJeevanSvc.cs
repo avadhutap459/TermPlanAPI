@@ -23,7 +23,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
 
         }
 
-        public async Task<dynamic> SaralJeevan(SaralJeevanRequest objPremiumRequest)
+        public dynamic SaralJeevan(SaralJeevanRequest objPremiumRequest)
         {
             int LogId = 0;
             try
@@ -32,7 +32,8 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
                 string AdminName = "Admin";
                 int SourceId = 1;
                 int ProductId = 1;
-                LogId = await _IGenericRepo.SaveServiceLog("Insert", SourceId, 0, DecRequest, "", AdminName, "", ProductId);
+                dynamic Insert = _IGenericRepo.SaveServiceLog("Insert", SourceId, 0, DecRequest, "", AdminName, "", ProductId);
+                LogId = Convert.ToInt32(Insert[0]);
                 SaralJeevanResponse objPremiumResponse = new SaralJeevanResponse();
                 #region ValueAssignment
 
@@ -213,14 +214,14 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
 
                 string DecResponse = _JsonConvert.SerializeObject(objPremiumResponse);
 
-                dynamic Update = await _IGenericRepo.SaveServiceLog("Update", SourceId, LogId, "", DecResponse, "", "Admin", ProductId);
+                dynamic Update = _IGenericRepo.SaveServiceLog("Update", SourceId, LogId, "", DecResponse, "", "Admin", ProductId);
 
                 return objPremiumResponse;
             }
             catch (Exception ex)
             {
                 int a = LogId;
-                var ErrorResult = await _IGenericRepo.SaveErrorLog(a, ex.ToString());
+                var ErrorResult = _IGenericRepo.SaveErrorLog(a, ex.ToString());
                 throw ex;
             }
         }

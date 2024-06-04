@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sudlife_ProtectShieldPlus.APILayer.API.Global.Filter;
 using Sudlife_ProtectShieldPlus.APILayer.API.Model;
+using Sudlife_ProtectShieldPlus.APILayer.API.Service.Common;
 using Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus;
 
 namespace Sudlife_ProtectShieldPlus.APILayer.API.Controller
@@ -17,13 +19,36 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Controller
         }
 
         [HttpPost]
-        public async Task<ProtectShieldPlusResponse> ProtectShieldPlus(ProtectShieldPlusRequest objPremiumRequest)
+        [ServiceFilter(typeof(ValidationResultFilter))]
+        public  IActionResult ProtectShieldPlus(ProtectShieldPlusRequest objPremiumRequest)
         {
-            ProtectShieldPlusResponse objPremiumResponse=new ProtectShieldPlusResponse();
+            ProtectShieldPlusResponse objPremiumResponse = new ProtectShieldPlusResponse();
 
-            objPremiumResponse = await _protectShieldPlusSvc.ProtectShieldPlus(objPremiumRequest);
+            objPremiumResponse =  _protectShieldPlusSvc.ProtectShieldPlus(objPremiumRequest);
 
-            return objPremiumResponse;
+            BaseResponse baseResponse = new BaseResponse();
+            if (objPremiumResponse.Status == "Success")
+            {
+                baseResponse.StatusCode = 200;
+                List<string> Msgstr = new List<string>();
+                Msgstr.Add("Success");
+                baseResponse.Message = Msgstr;
+                baseResponse.IsSuccess = true;
+                baseResponse.Data = _JsonConvert.SerializeObject(objPremiumResponse);
+                return Ok(baseResponse);
+            }
+            else
+            {
+
+                baseResponse.StatusCode = 400;
+                List<string> Msgstr = new List<string>();
+                Msgstr.Add("Fail");
+                baseResponse.Message = Msgstr;
+                baseResponse.IsSuccess = false;
+                baseResponse.Data = _JsonConvert.SerializeObject(objPremiumResponse);
+                return BadRequest(baseResponse);
+
+            }
         }
     }
 }

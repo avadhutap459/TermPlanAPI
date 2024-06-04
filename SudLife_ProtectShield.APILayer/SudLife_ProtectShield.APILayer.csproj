@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Logger\**" />
+    <Content Remove="Logger\**" />
+    <EmbeddedResource Remove="Logger\**" />
+    <None Remove="Logger\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="nlog.config" />
   </ItemGroup>
 
@@ -16,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="API\Global\Filter\" />
-    <Folder Include="Logger\" />
   </ItemGroup>
 
   <ItemGroup>

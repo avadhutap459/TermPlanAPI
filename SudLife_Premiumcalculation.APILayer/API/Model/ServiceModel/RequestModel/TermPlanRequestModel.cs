@@ -3,8 +3,8 @@
     public class TermPlanRequestModel
     {
         public DateTime InwardDate { get; set; }
-        public string ApplicationNo { get; set; }
-        public string Source { get; set; }
+        public string ApplicationNo { get; set; } = string.Empty;
+        public string Source { get; set; } = string.Empty;
         public string CustomerID { get; set; }
         public AddField AddField { get; set; }
         public ApplicantDetails ApplicantDetails { get; set; }

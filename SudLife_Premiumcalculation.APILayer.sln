@@ -11,6 +11,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudLife_ProtectShield.APILa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudlife_ProtectShieldPlus.APILayer", "Sudlife_ProtectShieldPlus.APILayer\Sudlife_ProtectShieldPlus.APILayer.csproj", "{0C932A3D-8D02-4B4B-9A83-CBD91DBBD8B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScript", "SqlScript", "{32D184BA-2A45-4755-9602-0CC54D67359F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V1.0", "V1.0", "{515334A2-E3E0-4FD5-B52E-A0A262E27A9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDL", "DDL", "{93809DB8-4C7E-4263-B391-3D5C82D81F01}"
+	ProjectSection(SolutionItems) = preProject
+		DDLScript.sql = DDLScript.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DML", "DML", "{E64BFFB4-606E-4AF5-94EE-3B21942A66C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stored Procedure", "Stored Procedure", "{88141769-ED9B-4B5E-9DBD-2F526DFB6BDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +49,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{515334A2-E3E0-4FD5-B52E-A0A262E27A9A} = {32D184BA-2A45-4755-9602-0CC54D67359F}
+		{93809DB8-4C7E-4263-B391-3D5C82D81F01} = {515334A2-E3E0-4FD5-B52E-A0A262E27A9A}
+		{E64BFFB4-606E-4AF5-94EE-3B21942A66C6} = {515334A2-E3E0-4FD5-B52E-A0A262E27A9A}
+		{88141769-ED9B-4B5E-9DBD-2F526DFB6BDF} = {515334A2-E3E0-4FD5-B52E-A0A262E27A9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2F1C67F-AC79-4FE7-92B7-E71F66FF48BB}

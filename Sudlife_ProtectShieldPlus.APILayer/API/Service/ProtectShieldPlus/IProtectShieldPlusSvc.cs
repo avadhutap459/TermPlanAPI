@@ -4,6 +4,6 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
 {
     public interface IProtectShieldPlusSvc
     {
-        Task<dynamic> ProtectShieldPlus(ProtectShieldPlusRequest objProtectShieldPlusRequest);
+        dynamic ProtectShieldPlus(ProtectShieldPlusRequest objProtectShieldPlusRequest);
     }
 }

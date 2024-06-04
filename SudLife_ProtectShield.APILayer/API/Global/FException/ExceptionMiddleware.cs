@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
 using NLog;
 using SudLife_ProtectShield.APILayer.API.Model;
+using SudLife_ProtectShield.APILayer.API.Service.Common;
 
 namespace SudLife_ProtectShield.APILayer.API.Global.FException
 {
@@ -48,15 +49,24 @@ namespace SudLife_ProtectShield.APILayer.API.Global.FException
                     break;
             }
 
-            var errorResponse = new ErrorResponse
+            List<string> Msgstr = new List<string>();
+            Msgstr.Add("Internal Server Error");
+
+            BaseResponse baseResponse = new BaseResponse()
             {
-                StatusCode = statusCode,
-                Message = ex.Message,
+                StatusCode = 500,
+                Message = Msgstr,
+                IsSuccess = false,
+                Data = null,
             };
+
+
+
+            string ExcRes = _JsonConvert.SerializeObject(baseResponse);
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = statusCode;
-            context.Response.WriteAsync(errorResponse.ToString());
+            context.Response.WriteAsync(ExcRes.ToString());
 
         }
     }

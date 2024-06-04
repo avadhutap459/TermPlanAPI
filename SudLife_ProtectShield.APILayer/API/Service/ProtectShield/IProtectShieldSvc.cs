@@ -4,6 +4,6 @@ namespace SudLife_ProtectShield.APILayer.API.Service.ProtectShield
 {
     public interface IProtectShieldSvc
     {
-        Task<dynamic> ProtectShield(ProtectShieldRequest objectrequet);
+        dynamic ProtectShield(ProtectShieldRequest objectrequet);
     }
 }

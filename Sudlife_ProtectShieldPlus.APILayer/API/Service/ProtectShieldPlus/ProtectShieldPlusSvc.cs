@@ -23,7 +23,7 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
         }
 
 
-        public async Task<dynamic> ProtectShieldPlus(ProtectShieldPlusRequest objProtectShieldPlusRequest)
+        public   dynamic ProtectShieldPlus(ProtectShieldPlusRequest objProtectShieldPlusRequest)
         {
             int Logid = 0;
             try
@@ -34,9 +34,8 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
                 int ProductID = 3;
                 string AdminName = "Admin";
 
-                dynamic Insert = await _IGenericRepo.SaveServiceLog("Insert", SourceId, 0, DecRequest, "", AdminName, "", ProductID);
-
-                Logid = Convert.ToInt32(Insert);
+                dynamic Insert =  _IGenericRepo.SaveServiceLog("Insert", SourceId, 0, DecRequest, "", AdminName, "", ProductID);              
+                Logid = Convert.ToInt32(Insert[0]);
 
                 #region ValueAssignment
 
@@ -260,14 +259,14 @@ namespace Sudlife_ProtectShieldPlus.APILayer.API.Service.ProtectShieldPlus
 
                 string DecResponse = _JsonConvert.SerializeObject(objPremiumResponse);
                
-                dynamic Update = await _IGenericRepo.SaveServiceLog("Update", SourceId, Logid, "", DecResponse, "", "Admin", ProductID);
+                dynamic Update =  _IGenericRepo.SaveServiceLog("Update", SourceId, Logid, "", DecResponse, "", "Admin", ProductID);
 
                 return objPremiumResponse;
             }
             catch (Exception ex)
             {
                 int a = Logid;
-                var ErrorResult = await _IGenericRepo.SaveErrorLog(a, ex.ToString());
+                var ErrorResult =  _IGenericRepo.SaveErrorLog(a, ex.ToString());
 
                 throw ex;
 

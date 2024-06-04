@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 using SudLife_ProtectShield.APILayer.API.Database;
 using SudLife_ProtectShield.APILayer.API.Global.FException;
+using SudLife_ProtectShield.APILayer.API.Global.Filter;
 using SudLife_ProtectShield.APILayer.API.Service.Common;
 using SudLife_ProtectShield.APILayer.API.Service.DynamicParams;
 using SudLife_ProtectShield.APILayer.API.Service.ProtectShield;
@@ -20,6 +22,14 @@ builder.Services.AddTransient<DynamicCollections>();
 builder.Services.AddTransient<ExceptionMiddleware>();
 
 builder.Services.AddTransient<IProtectShieldSvc,ProtectShieldSvc>();
+builder.Services.AddScoped<ValidationResultFilter>();
+
+builder.Services.Configure<ApiBehaviorOptions>(Options =>
+{
+    Options.SuppressModelStateInvalidFilter = true;
+
+
+});
 
 var app = builder.Build();
 

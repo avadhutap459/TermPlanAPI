@@ -3,6 +3,7 @@
     public interface IDigitalSign
     {
         string DataToBeDigitallySign(string Plaintxt, string Sourcename);
+        bool DataToBeValidateDigitalSign(byte[] _bytesigndata, byte[] _bytepayloaddata, string sourcename);
         void Dispose();
     }
 }

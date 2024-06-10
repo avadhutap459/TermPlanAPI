@@ -56,6 +56,33 @@ namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
             }
         }
 
+        public bool DataToBeValidateDigitalSign(byte[] _bytesigndata, byte[] _bytepayloaddata,string sourcename)
+        {
+            try
+            {
+                ClsSource objsource = Objsourcesvc.Getsourcedetailsbaseonsourcename(sourcename);
+
+                return VerifySignature(_bytesigndata, _bytepayloaddata, sourcename);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool VerifySignature(byte[] data, byte[] signature,string filepath)
+        {
+            X509Certificate2 publiccertifcate = new X509Certificate2(filepath);
+
+            using (var sha256 = SHA256.Create())
+            {
+                using (var rsa = publiccertifcate.GetRSAPublicKey())
+                {
+                    return rsa.VerifyData(data, signature, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                }
+            }
+        }
+
         private byte[] SignData(byte[] data, string filepath,string filepassword)
         {
             try

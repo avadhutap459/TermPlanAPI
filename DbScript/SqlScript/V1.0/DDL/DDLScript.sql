@@ -129,3 +129,8 @@ BEGIN
 	REFERENCES [dbo].[txnSeviceLog] ([LogId])
 
 End
+
+Alter table [dbo].[mstSource] add PrivateFilePath Nvarchar(max)
+Alter table [dbo].[mstSource] add PrivateFilePassword Nvarchar(100)
+Alter table [dbo].[mstSource] add PublicFilePath Nvarchar(max)
+Alter table [dbo].[mstSource] add EncryptDecryptPassword Nvarchar(max)

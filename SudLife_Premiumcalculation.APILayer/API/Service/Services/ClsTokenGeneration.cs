@@ -1,18 +1,19 @@
-﻿namespace SudLife_Premiumcalculation.APILayer.API.Global.SecurityGlobal
-{
-    public class CLsEncyptionDecryption : IDisposable
-    {
+﻿using SudLife_Premiumcalculation.APILayer.API.Service.Interface;
 
+namespace SudLife_Premiumcalculation.APILayer.API.Service.Service
+{
+    public class ClsTokenGeneration : IDisposable, ITokengeneration
+    {
         private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
 
         bool disposed = false;
 
-        public CLsEncyptionDecryption()
+        public ClsTokenGeneration()
         {
 
         }
 
-        ~CLsEncyptionDecryption()
+        ~ClsTokenGeneration()
         {
             Dispose(false);
         }

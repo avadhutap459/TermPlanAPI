@@ -60,13 +60,21 @@ Begin
                ,[CreatedBy]
                ,[CreatedAt]
                ,[LastModifiedBy]
-               ,[LastModifiedAt])
+               ,[LastModifiedAt]
+               ,[PrivateFilePath]
+               ,[PrivateFilePassword]
+               ,[PublicFilePath]
+               ,[EncryptDecryptPassword])
          VALUES
                ('BOI_NewTerm'
                ,1
                ,'Admin'
                ,getdate()
                ,'Admin'
-               ,getdate())
+               ,getdate()
+               ,'D:\Certificate\UBI\pvtkeytxn.pfx'
+               ,'Sud@4321'
+               ,'D:\Certificate\UBI\Public ServiceCertificateSUD.crt'
+               ,'BF6886467F3E4984BE219BC8010F382D')
 End
 GO

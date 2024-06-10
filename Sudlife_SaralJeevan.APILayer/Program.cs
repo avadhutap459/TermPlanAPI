@@ -4,6 +4,7 @@ using Sudlife_SaralJeevan.APILayer.API.Database;
 using Sudlife_SaralJeevan.APILayer.API.Global.FException;
 using Sudlife_SaralJeevan.APILayer.API.Global.Filter;
 using Sudlife_SaralJeevan.APILayer.API.Service;
+using Sudlife_SaralJeevan.APILayer.API.Service.Common;
 using Sudlife_SaralJeevan.APILayer.API.Service.DynamicParams;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +13,18 @@ LogManager.LoadConfiguration(string.Concat(System.Environment.CurrentDirectory, 
 LogManager.Configuration.Variables["mydir"] = string.Concat(System.Environment.CurrentDirectory, "/Logger");
 
 // Add services to the container.
-builder.Services.AddTransient<CommonOperation>();
+builder.Services.AddTransient<CommonOperations>();
 builder.Services.AddTransient<DynamicCollections>();
 builder.Services.AddTransient<ExceptionMiddleware>();
+builder.Services.AddTransient<DigitallySignedResponse>();
 builder.Services.AddTransient<IGenericRepo,GenericRepo>();
+builder.Services.AddTransient<IJWTService, JWTService>();
 builder.Services.AddTransient<ISaralJeevanSvc, SaralJeevanSvc>();
+
+builder.Services.AddScoped<RequestFilter>();
 builder.Services.AddScoped<ValidationFilter>();
+builder.Services.AddScoped<DigitalSignFilter>();
+builder.Services.AddScoped<JWTValidationFilter>();
 
 builder.Services.AddControllers();
 

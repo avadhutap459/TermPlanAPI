@@ -11,9 +11,6 @@
     <Folder Include="API\Controller\" />
     <Folder Include="API\Database\" />
     <Folder Include="API\Global\FException\" />
-	<Folder Include="API\Global\Filter\" />
-    <Folder Include="API\Model\" />
-    <Folder Include="API\Service\" />
     <Folder Include="Logger\" />
 	</ItemGroup>
 
@@ -22,6 +19,7 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="NLog" Version="5.3.2" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.0" />
 	</ItemGroup>
 
 	

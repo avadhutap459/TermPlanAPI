@@ -9,12 +9,12 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
 {
     public class SaralJeevanSvc : ISaralJeevanSvc
     {
-        public readonly CommonOperation _CommonOperations;
+        public readonly CommonOperations _CommonOperations;
         public readonly DynamicCollections _dynamiccoll;
 
         private readonly IGenericRepo _IGenericRepo;
 
-        public SaralJeevanSvc(CommonOperation CommonOperations, DynamicCollections dynamiccoll, IGenericRepo IGenericRepo)
+        public SaralJeevanSvc(CommonOperations CommonOperations, DynamicCollections dynamiccoll, IGenericRepo IGenericRepo)
         {
             _CommonOperations = CommonOperations;
             _dynamiccoll = dynamiccoll;

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
 using NLog;
+using Sudlife_SaralJeevan.APILayer.API.Model;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -72,7 +73,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
 
         public string SaveErrorLog(int Logid, string ErrorDescription)
         {
-            string connection = _configuration.GetSection("ConnectionStrings:DBConnection").Value;
+           
             string spName = "[dbo].[StpSaveErrorLogs]";
 
             using (IDbConnection con = CreateConnection())
@@ -96,6 +97,42 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
                 catch (Exception ex)
                 {
                     logger.Error("SaveErrorLog Error :----------" + ex);
+                    throw;
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+            }
+        }
+
+
+        public async Task<PathResponse> GetPathDetails(string Source, string Env, string KeyType)
+        {
+            string spName = "[dbo].[StpGetCertDetails]";
+            PathResponse pathResponse = new PathResponse();
+            using (IDbConnection con = CreateConnection())
+            {
+                if (con != null && con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                try
+                {
+
+                    var param = new DynamicParameters();
+                    param.Add("@Source", Source);
+                    param.Add("@Env", Env);
+                    param.Add("@KeyType", KeyType);
+                    var result2 = (await con.QueryAsync<PathResponse>(spName, param, commandType: System.Data.CommandType.StoredProcedure, commandTimeout: 60)).FirstOrDefault();
+
+
+                    pathResponse.KeyPath = result2.KeyPath.ToString();
+                    return pathResponse;
+                }
+                catch (Exception ex)
+                {
                     throw;
                 }
                 finally

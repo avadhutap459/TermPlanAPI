@@ -1,20 +1,25 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NLog;
+using Sudlife_SaralJeevan.APILayer.API.Database;
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Sudlife_SaralJeevan.APILayer.API.Service
 {
-    public class CommonOperation
+    public class CommonOperations
     {
         private readonly IConfiguration _configuration;
-       
-        
-        public CommonOperation(IConfiguration configuration)
+        private readonly ILogger<CommonOperations> _logger;
+        private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly IGenericRepo _IGenericRepo;
+        public CommonOperations(IConfiguration configuration, IGenericRepo genericRepo, ILogger<CommonOperations> logger)
         {
             _configuration = configuration;
-           
-          
+            _logger = logger;
+            _IGenericRepo = genericRepo;
         }
         public string ConvertToYears(string PolicyTerm)
         {
@@ -134,5 +139,96 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
             }
 
         }
+
+        public string[] GetFinalPayLoad(string DecodedString)
+        {
+            string Decrypt_FinalPayload = DecryptData(DecodedString, GetKey());
+
+            string Decode_FinalPayloadWith_Header_Payload_SignData = Decode(Decrypt_FinalPayload);
+
+            return Decode_FinalPayloadWith_Header_Payload_SignData.Split('.');
+        }
+
+        public string GetKey()
+        {
+            return _configuration.GetSection("KEYS:EncryptDecryptKey").Value;
+        }
+        public string DecryptData(string EncryptedText, string key)
+        {
+            try
+            {
+                RijndaelManaged aes = new RijndaelManaged();
+                aes.BlockSize = 128;
+                aes.KeySize = 256;
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
+                byte[] keyArr = Convert.FromBase64String(key);
+                byte[] ivArr = { 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1, 7, 7, 7, 7 };
+                byte[] IVBytes16Value = new byte[16];
+                Array.Copy(ivArr, IVBytes16Value, 16);
+
+                byte[] KeyArrBytes32Value = new byte[32];
+
+                Array.Copy(keyArr, KeyArrBytes32Value, 24);
+
+                aes.Key = KeyArrBytes32Value;
+                aes.IV = IVBytes16Value;
+
+                ICryptoTransform decrypto = aes.CreateDecryptor();
+
+                byte[] encryptedBytes = Convert.FromBase64CharArray(EncryptedText.ToCharArray(), 0, EncryptedText.Length);
+                byte[] decryptedData = decrypto.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
+                return ASCIIEncoding.UTF8.GetString(decryptedData);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public string Decode(string encodedServername)
+        {
+            return System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(encodedServername));
+        }
+        public string ComputeHashFromJson(string jsonstr)
+        {
+            string finaloutput = string.Empty;
+
+            string CheckSumKey = _configuration.GetSection("KEYS:CheckSumKey").Value;
+
+            byte[] key = Encoding.UTF8.GetBytes(CheckSumKey);
+            byte[] bytes = Encoding.UTF8.GetBytes(jsonstr);
+
+            HMACSHA256 hashstring = new HMACSHA256(key);
+            byte[] hash = hashstring.ComputeHash(bytes);
+            finaloutput = Convert.ToBase64String(hash);
+
+
+            return finaloutput;
+        }
+
+        public async Task<bool> VerifySignatureSource(byte[] data, byte[] signature, string source)
+        {
+           
+            string Env = _configuration.GetSection("URLS:Env").Value;
+
+           
+
+            dynamic path =await _IGenericRepo.GetPathDetails(source, Env, "Public");
+
+            string pathvalue = path.KeyPath;
+
+            X509Certificate2 publiccertificate1 = new X509Certificate2(pathvalue);
+
+            using (var sha256 = SHA256.Create())
+            {
+                using (var rsa = publiccertificate1.GetRSAPublicKey())
+                {
+                    return rsa.VerifyData(data, signature, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                }
+            }
+        }
+
     }
 }

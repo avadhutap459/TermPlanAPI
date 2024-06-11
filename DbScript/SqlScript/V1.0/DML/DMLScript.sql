@@ -64,7 +64,9 @@ Begin
                ,[PrivateFilePath]
                ,[PrivateFilePassword]
                ,[PublicFilePath]
-               ,[EncryptDecryptPassword])
+               ,[EncryptDecryptPassword]
+               ,[secretkeyfortoken]
+               ,[secretkeyforchecksum])
          VALUES
                ('BOI_NewTerm'
                ,1
@@ -75,6 +77,8 @@ Begin
                ,'D:\Certificate\UBI\pvtkeytxn.pfx'
                ,'Sud@4321'
                ,'D:\Certificate\UBI\Public ServiceCertificateSUD.crt'
-               ,'BF6886467F3E4984BE219BC8010F382D')
+               ,'BF6886467F3E4984BE219BC8010F382D'
+               ,'2CEF55EB764E420DAADFD047BE9DAEE1'
+               ,'DAB2D4A679EA48F39CF006475CF48859')
 End
 GO

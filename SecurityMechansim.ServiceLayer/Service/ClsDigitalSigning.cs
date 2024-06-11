@@ -1,40 +1,34 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using SecurityMechansim.ServiceLayer.Interface;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
-using SudLife_Premiumcalculation.APILayer.API.Database;
-using SudLife_Premiumcalculation.APILayer.API.Model.ServiceModel;
-using SudLife_Premiumcalculation.APILayer.API.Service.Interface;
 
-namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
+namespace SecurityMechansim.ServiceLayer.Service
 {
     public class ClsDigitalSigning : IDisposable, IDigitalSign
     {
-        DbConnection ConnectionManager;
         bool disposed = false;
-        ClsSourcesvc Objsourcesvc = new ClsSourcesvc();
         ClsEncyptionDecryption Objencryptdecryptsvc = new ClsEncyptionDecryption();
 
         public ClsDigitalSigning()
         {
-            ConnectionManager = DbConnection.SingleInstance;
+
         }
         ~ClsDigitalSigning()
         {
             Dispose(false);
         }
 
-        public string DataToBeDigitallySign(string Plaintxt,string Sourcename)
+        public string DataToBeDigitallySign(string plaintxt,string sourcename,string privatefilepath,string privatefilepassword,string encryptderyptkey)
         {
             try
             {
                 string header = JwtHeaderInBase64();
 
-                string payload = PayloadInBase64(Plaintxt);
+                string payload = PayloadInBase64(plaintxt);
 
-                var plaintxtinbyteformat = System.Text.Encoding.UTF8.GetBytes(Plaintxt);
-
-                ClsSource objsource = Objsourcesvc.Getsourcedetailsbaseonsourcename(Sourcename);
+                var plaintxtinbyteformat = System.Text.Encoding.UTF8.GetBytes(plaintxt);
                 
-                byte[] _signdata = SignData(plaintxtinbyteformat, objsource.PrivateFilePath, objsource.PrivateFilePassword);
+                byte[] _signdata = SignData(plaintxtinbyteformat, privatefilepath, privatefilepassword);
                 
                 string SignDataInBase64 = Convert.ToBase64String(_signdata);
 
@@ -46,7 +40,7 @@ namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
 
                 string Encode_FinalPayloadWith_Header_Payload_SignData = Encode(FinalPayloadWith_Header_Payload_SignData);
 
-                string Encrypt_FinalPayload = Objencryptdecryptsvc.DataToBeEncrypt(Encode_FinalPayloadWith_Header_Payload_SignData, objsource.EncryptDecryptPassword);
+                string Encrypt_FinalPayload = Objencryptdecryptsvc.DataToBeEncrypt(sourcename,Encode_FinalPayloadWith_Header_Payload_SignData, encryptderyptkey);
 
                 return Encrypt_FinalPayload;
             }
@@ -56,13 +50,11 @@ namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
             }
         }
 
-        public bool DataToBeValidateDigitalSign(byte[] _bytesigndata, byte[] _bytepayloaddata,string sourcename)
+        public bool DataToBeValidateDigitalSign(byte[] _bytesigndata, byte[] _bytepayloaddata,string publicfilepath)
         {
             try
             {
-                ClsSource objsource = Objsourcesvc.Getsourcedetailsbaseonsourcename(sourcename);
-
-                return VerifySignature(_bytesigndata, _bytepayloaddata, sourcename);
+                return VerifySignature(_bytesigndata, _bytepayloaddata, publicfilepath);
             }
             catch(Exception ex)
             {
@@ -70,9 +62,9 @@ namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
             }
         }
 
-        public bool VerifySignature(byte[] data, byte[] signature,string filepath)
+        private bool VerifySignature(byte[] data, byte[] signature,string publicfilepath)
         {
-            X509Certificate2 publiccertifcate = new X509Certificate2(filepath);
+            X509Certificate2 publiccertifcate = new X509Certificate2(publicfilepath);
 
             using (var sha256 = SHA256.Create())
             {

@@ -1,0 +1,13 @@
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.csproj.AssemblyReference.cache
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.AssemblyInfoInputs.cache
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.AssemblyInfo.cs
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.csproj.CoreCompileInputs.cache
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.sourcelink.json
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\bin\Debug\net8.0\SecurityMechansim.ServiceLayer.deps.json
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\bin\Debug\net8.0\SecurityMechansim.ServiceLayer.dll
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\bin\Debug\net8.0\SecurityMechansim.ServiceLayer.pdb
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.dll
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\refint\SecurityMechansim.ServiceLayer.dll
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\SecurityMechansim.ServiceLayer.pdb
+D:\GitHub2023\TermPlanAPI\SecurityMechansim.ServiceLayer\obj\Debug\net8.0\ref\SecurityMechansim.ServiceLayer.dll

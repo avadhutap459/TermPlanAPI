@@ -1,8 +1,8 @@
-﻿using SudLife_Premiumcalculation.APILayer.API.Service.Interface;
+﻿using SecurityMechansim.ServiceLayer.Interface;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
+namespace SecurityMechansim.ServiceLayer.Service
 {
     public class ClsEncyptionDecryption : IDisposable, IEncryptionNDecryption
     {
@@ -13,7 +13,7 @@ namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
             Dispose(false);
         }
 
-        public string DataToBeEncrypt(string Plaintxt, string key)
+        public string DataToBeEncrypt(string sourcename, string Plaintxt, string key)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
             }
         }
         
-        public string DataToBeDecrypt(string Encrypttxt, string key)
+        public string DataToBeDecrypt(string sourcename, string Encrypttxt, string key)
         {
             try
             {

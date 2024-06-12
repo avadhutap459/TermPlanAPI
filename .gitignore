@@ -13,5 +13,5 @@
 /Sudlife_SaralJeevan.APILayer/obj
 /DbScript/bin
 /DbScript/obj
-/SecurityMechansim.ServiceLayer/bin/Debug/net8.0/SecurityMechansim.ServiceLayer.dll
-/SecurityMechansim.ServiceLayer/obj/Debug/net8.0/ref/SecurityMechansim.ServiceLayer.dll
+/SecurityMechansim.ServiceLayer/bin
+/SecurityMechansim.ServiceLayer/obj

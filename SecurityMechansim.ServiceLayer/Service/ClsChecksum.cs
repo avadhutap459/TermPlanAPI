@@ -1,23 +1,35 @@
-﻿namespace SudLife_Premiumcalculation.APILayer.API.Global.SecurityGlobal
-{
-    public class CLsDigitalSigning : IDisposable
-    {
-       
-        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+﻿using SecurityMechansim.ServiceLayer.Interface;
+using System.Security.Cryptography;
+using System.Text;
 
+namespace SecurityMechansim.ServiceLayer.Service
+{
+    public class ClsChecksum : IChecksum, IDisposable
+    {
         bool disposed = false;
 
-        public CLsDigitalSigning()
-        {
-            
-        }
-
-        ~CLsDigitalSigning()
+        ~ClsChecksum()
         {
             Dispose(false);
         }
 
-        //methods
+        public string Generatechecksumusingplaintext(string sourcename , string plaintext,string keyforchecksum)
+        {
+            try
+            {
+                byte[] key = Encoding.UTF8.GetBytes(keyforchecksum);
+                byte[] bytes = Encoding.UTF8.GetBytes(plaintext);
+                HMACSHA256 hashstring = new HMACSHA256(key);
+                byte[] hash = hashstring.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
@@ -64,5 +76,6 @@
 
 
         #endregion
+
     }
 }

@@ -1,23 +1,53 @@
-﻿namespace SudLife_Premiumcalculation.APILayer.API.Global.SecurityGlobal
+﻿using SudLife_Premiumcalculation.APILayer.API.Database;
+using SudLife_Premiumcalculation.APILayer.API.Model.ServiceModel;
+using SudLife_Premiumcalculation.APILayer.API.Service.Interface;
+using System.Data;
+using Dapper;
+
+namespace SudLife_Premiumcalculation.APILayer.API.Service.Services
 {
-    public class CLsEncyptionDecryption : IDisposable
+    public class ClsSourcesvc : IDisposable, ISource
     {
-
-        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
-
+        DbConnection ConnectionManager;
         bool disposed = false;
 
-        public CLsEncyptionDecryption()
+        public ClsSourcesvc()
         {
-
+            ConnectionManager = DbConnection.SingleInstance;
         }
-
-        ~CLsEncyptionDecryption()
+        ~ClsSourcesvc()
         {
             Dispose(false);
         }
 
-        //methods
+
+        public ClsSource Getsourcedetailsbaseonsourcename(string sourcename)
+        {
+            try
+            {
+                ClsSource Objsource = new ClsSource();
+
+                using (IDbConnection cn = ConnectionManager.connection)
+                {
+                    cn.Open();
+
+                    Objsource = cn.Query<ClsSource>("select * from [dbo].[mstSource] where SourceName = @SourceName " +
+                        "and IsActive = 1", new
+                        {
+                            SourceName = sourcename
+                        }).FirstOrDefault();
+                }
+
+                return Objsource;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

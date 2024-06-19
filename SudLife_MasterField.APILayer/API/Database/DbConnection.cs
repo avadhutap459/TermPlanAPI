@@ -1,7 +1,6 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 
-namespace SudLife_Premiumcalculation.APILayer.API.Database
+namespace SudLife_MasterField.APILayer.API.Database
 {
     public sealed class DbConnection
     {

@@ -8,19 +8,21 @@
 
   <ItemGroup>
     <Folder Include="API\Database\" />
-    <Folder Include="API\Global\FException\" />
     <Folder Include="API\Global\Filter\" />
     <Folder Include="API\Database\" />
-    <Folder Include="API\Global\FException\" />
     <Folder Include="API\Global\Filter\" />
     <Folder Include="API\Model\ServiceModel\ResponseModel\" />
-    <Folder Include="API\Service\" />
-    <Folder Include="API\Service\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecurityMechansim.ServiceLayer\SecurityMechansim.ServiceLayer.csproj" />
   </ItemGroup>
 
 </Project>

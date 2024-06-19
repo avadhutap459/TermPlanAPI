@@ -208,16 +208,16 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
             return finaloutput;
         }
 
-        public async Task<bool> VerifySignatureSource(byte[] data, byte[] signature, string source)
+        public bool VerifySignatureSource(byte[] data, byte[] signature, string source)
         {
            
             string Env = _configuration.GetSection("URLS:Env").Value;
 
-           
 
-            dynamic path =await _IGenericRepo.GetPathDetails(source, Env, "Public");
 
-            string pathvalue = path.KeyPath;
+            string pathvalue = _IGenericRepo.GetPathDetails(source, Env, "Public");
+
+            //string pathvalue = path.KeyPath;
 
             X509Certificate2 publiccertificate1 = new X509Certificate2(pathvalue);
 

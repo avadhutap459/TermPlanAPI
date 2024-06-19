@@ -53,13 +53,12 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.FException
             }
 
             
-            List<string> Msgstr = new List<string>();
-            Msgstr.Add("Internal Server Error");
+            
 
             BaseResponse baseResponse = new BaseResponse()
             {
                 StatusCode = 500,
-                Message = Msgstr,
+                Message = "Internal Server Error",
                 IsSuccess = false,
                 Data = null,
             };

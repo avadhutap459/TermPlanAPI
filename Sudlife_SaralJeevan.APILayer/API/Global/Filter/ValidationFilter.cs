@@ -36,7 +36,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
                                 .Select(e => e.ErrorMessage)
                                 .ToList();
                
-                baseResponse.Message = errors;
+              //  baseResponse.Message = errors;
                 baseResponse.IsSuccess = false;
                 baseResponse.Data =null;
 

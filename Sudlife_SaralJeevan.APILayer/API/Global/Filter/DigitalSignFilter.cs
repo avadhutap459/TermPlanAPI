@@ -81,7 +81,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
                         _ByteSignData = Convert.FromBase64String(_GetSignData);
                         _BytePayloadData = Convert.FromBase64String(_GetPayloadData);
                         // verify = _CommonOperations.VerifySignature(_BytePayloadData, _ByteSignData);
-                        verify =await _CommonOperations.VerifySignatureSource(_BytePayloadData, _ByteSignData, objEncRequest.Source);
+                        verify =_CommonOperations.VerifySignatureSource(_BytePayloadData, _ByteSignData, objEncRequest.Source);
                         if (verify)
                         {
                            
@@ -90,15 +90,13 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
                         }
                         if (!verify)
                         {
-                            logger.Info("Invalid Signature / Not matched\"");
-                            List<string> Msgstr = new List<string>();
-                            Msgstr.Add("Invalid Signature / Not matched\"");
-                            objbaseresponse.Message = Msgstr;
+                           
+                            objbaseresponse.Message = "Invalid Signature / Not matched\"";
                             objbaseresponse.StatusCode = 400;
                             objbaseresponse.IsSuccess = false;
 
                             var InvalidSignature = _JsonConvert.SerializeObject(objbaseresponse);
-                            objEncResponse.EncryptResponseSignValue = await _DigitallySignedResponse.DigitalsignSource(InvalidSignature, objEncRequest.Source);
+                            objEncResponse.EncryptResponseSignValue = _DigitallySignedResponse.DigitalsignSource(InvalidSignature, objEncRequest.Source);
                             objEncResponse.CheckSum = _CommonOperations.ComputeHashFromJson(InvalidSignature);
                             context.Result = new ContentResult
                             {

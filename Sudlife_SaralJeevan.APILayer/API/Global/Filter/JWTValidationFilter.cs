@@ -52,7 +52,28 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
             _DigitallySignedResponse = digitallySignedResponse;
 
         }
+        private string ReadBodyAsString(HttpRequest request)
+        {
+            var initialBody = request.Body; // Workaround
 
+            try
+            {
+                request.EnableBuffering();
+
+                using (StreamReader reader = new StreamReader(request.Body))
+                {
+                    string text = reader.ReadToEnd();
+                    return text;
+                }
+            }
+            finally
+            {
+                // Workaround so MVC action will be able to read body as well
+                request.Body = initialBody;
+            }
+
+            return string.Empty;
+        }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -72,8 +93,14 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
 
             dynamic OrgPayLoad = null;
             #endregion
+
+
+
+
             try
             {
+
+                //string body = ReadBodyAsString(context.HttpContext.Request);
 
                 var BankCheckSum = context.HttpContext.Request.Headers["x-sudlife-hmac"].ToString();
 
@@ -133,15 +160,14 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
                         }
                         else
                         {
-                            List<string> Msgstr = new List<string>();
-                            Msgstr.Add("Invalid Checksum");
-                            objbaseresponse.Message = Msgstr;
+                           
+                            objbaseresponse.Message = "Invalid Checksum";
                             objbaseresponse.StatusCode = 400;
                             objbaseresponse.IsSuccess = false;
                             var InvalidChecksum = _JsonConvert.SerializeObject(objbaseresponse);
 
 
-                            objEncResponse.EncryptResponseSignValue = await _DigitallySignedResponse.DigitalsignSource(InvalidChecksum, objEncRequest.Source);
+                            objEncResponse.EncryptResponseSignValue =  _DigitallySignedResponse.DigitalsignSource(InvalidChecksum, objEncRequest.Source);
                             objEncResponse.CheckSum = _CommonOperations.ComputeHashFromJson(InvalidChecksum);
                             context.Result = new ContentResult
                             {
@@ -157,14 +183,12 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
                     }
                     else if (!ValidToken)
                     {
-                        List<string> Msgstr = new List<string>();
-                        Msgstr.Add("Invalid token / Not matched");
-                        objbaseresponse.Message = Msgstr;
+                        objbaseresponse.Message = "Invalid token / Not matched";
                         objbaseresponse.StatusCode = 401;
                         objbaseresponse.IsSuccess = false;
 
                         var Invalidtoken = _JsonConvert.SerializeObject(objbaseresponse);
-                        objEncResponse.EncryptResponseSignValue = await _DigitallySignedResponse.DigitalsignSource(Invalidtoken, objEncRequest.Source);
+                        objEncResponse.EncryptResponseSignValue =_DigitallySignedResponse.DigitalsignSource(Invalidtoken, objEncRequest.Source);
                         objEncResponse.CheckSum = _CommonOperations.ComputeHashFromJson(Invalidtoken);
                         context.Result = new ContentResult
                         {
@@ -179,7 +203,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Global.Filter
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using NLog;
 using Sudlife_SaralJeevan.APILayer.API.Database;
 using Sudlife_SaralJeevan.APILayer.API.Global.FException;
@@ -21,7 +22,7 @@ builder.Services.AddTransient<IGenericRepo,GenericRepo>();
 builder.Services.AddTransient<IJWTService, JWTService>();
 builder.Services.AddTransient<ISaralJeevanSvc, SaralJeevanSvc>();
 
-builder.Services.AddScoped<RequestFilter>();
+builder.Services.AddScoped<CustomAuthorizationFilter>();
 builder.Services.AddScoped<ValidationFilter>();
 builder.Services.AddScoped<DigitalSignFilter>();
 builder.Services.AddScoped<JWTValidationFilter>();
@@ -34,6 +35,11 @@ builder.Services.Configure<ApiBehaviorOptions>(Options =>
 
 
 });
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.AllowSynchronousIO = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

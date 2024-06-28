@@ -13,5 +13,24 @@
         public string PrivateFilePassword { get; set; } = string.Empty;
         public string PublicFilePath { get; set; } = string.Empty;
         public string EncryptDecryptPassword { get; set; } = string.Empty;
+        public string secretkeyfortoken { get; set; } = string.Empty;
+        public string secretkeyforchecksum { get; set; } = string.Empty;
+    }
+
+    public enum enumsource
+    {
+        BOI = 1
+    }
+
+    public enum enumsecuritythread
+    {
+        DecryptToken = 1,
+        ValidateToken = 2,
+        ValidateDigitalSign = 3,
+        DecryptRequest = 4,
+        ValidateChecksum = 5,
+        EncryptResponse = 6,
+        DigitalSign = 7,
+        ChecksumGeneration = 8
     }
 }

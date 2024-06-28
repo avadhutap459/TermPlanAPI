@@ -8,9 +8,7 @@
 
   <ItemGroup>
     <Folder Include="API\Database\" />
-    <Folder Include="API\Global\Filter\" />
     <Folder Include="API\Database\" />
-    <Folder Include="API\Global\Filter\" />
     <Folder Include="API\Model\ServiceModel\ResponseModel\" />
   </ItemGroup>
 

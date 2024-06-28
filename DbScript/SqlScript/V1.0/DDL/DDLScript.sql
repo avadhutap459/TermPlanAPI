@@ -3,6 +3,7 @@ BEGIN
 	CREATE TABLE [dbo].[mstSecurityMech](
 		[SecurityID] [int] IDENTITY(1,1) NOT NULL,
 		[SecurityName] [varchar](50) NULL,
+		[Type] [varchar](20) NULL,
 		[IsActive] [bit] NULL,
 		[createdBy] [varchar](50) NULL,
 		[CreatedAt] [datetime] NULL,
@@ -61,6 +62,7 @@ BEGIN
 		[ssmapId] [int] IDENTITY(1,1) NOT NULL,
 		[SourceId] [int] NULL,
 		[SecurityID] [int] NULL,
+		[orderId] [int] NULL,
 		[createdBy] [varchar](50) NULL,
 		[CreatedAt] [datetime] NULL,
 		[LastModifiedBy] [nvarchar](50) NULL,

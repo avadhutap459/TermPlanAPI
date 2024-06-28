@@ -36,7 +36,7 @@ namespace SecurityMechansim.ServiceLayer.Service
                     new Claim("CustomerId", customerid)
                 };
                 var tokeOptions = new JwtSecurityToken(
-                        expires: DateTime.Now.AddMinutes(30),
+                        expires: DateTime.Now.AddSeconds(30),
                         signingCredentials: signinCredentials);
                 string jwt_token = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
 

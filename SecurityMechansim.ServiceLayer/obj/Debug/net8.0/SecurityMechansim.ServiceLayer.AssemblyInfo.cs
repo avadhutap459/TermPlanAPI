@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SecurityMechansim.ServiceLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f9db3b9be1f25bdd645e619fe40ec501742b523")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0fba378ff5a804f4bf63b2c02c6721b7e371876")]
 [assembly: System.Reflection.AssemblyProductAttribute("SecurityMechansim.ServiceLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SecurityMechansim.ServiceLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

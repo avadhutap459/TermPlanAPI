@@ -1,5 +1,6 @@
-﻿using SecurityMechansim.ServiceLayer.Interface;
-using SecurityMechansim.ServiceLayer.Service;
+﻿using SecurityMechansim.ServiceLayer.Service;
+using SudLife_Premiumcalculation.APILayer.API.Global.Filter;
+using SudLife_Premiumcalculation.APILayer.API.Service.Services;
 
 namespace SudLife_Premiumcalculation.APILayer.API.Global.Dependancy
 {
@@ -11,6 +12,8 @@ namespace SudLife_Premiumcalculation.APILayer.API.Global.Dependancy
             services.AddScoped<IDigitalSign, ClsDigitalSigning>();
             services.AddScoped<IEncryptionNDecryption, ClsEncyptionDecryption>();
             services.AddScoped<ITokengeneration, ClsTokenGeneration>();
+            services.AddScoped<ISource, ClsSourcesvc>();
+            services.AddScoped<ClsCustomManipulationFilter>();
             return services;
         }
     }

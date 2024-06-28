@@ -1,96 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SudLife_Premiumcalculation.APILayer.API.Global.Filter;
 using SudLife_Premiumcalculation.APILayer.API.Model.ServiceModel;
 using SudLife_Premiumcalculation.APILayer.API.Model.ServiceModel.RequestModel;
 using SudLife_Premiumcalculation.APILayer.API.Service.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace SudLife_Premiumcalculation.APILayer.API.Controller
 {
-    [Route("api/[controller]")]
+    public class Urnoinvestor
+    {
+        [Required]
+        public string Urno { get; set; } = string.Empty;
+    }
+    [Route("v1")]
     [ApiController]
     public class TermPlanController : ControllerBase
     {
-        public static IConsumeApiService _consumeAPI;
-
-        public TermPlanController(IConsumeApiService consumeAPI)
+        private ITokengeneration Token { get; set; }
+        private IEncryptionNDecryption EncryptDecrypt { get; set; }
+        public TermPlanController(ITokengeneration token, IEncryptionNDecryption encryptDecrypt)
         {
-            _consumeAPI = consumeAPI;
+            Token = token;
+            EncryptDecrypt = encryptDecrypt;
         }
 
-        [HttpPost]
-        public IActionResult Calculate(TermPlanRequestModel RequestBody)
+        [HttpPost("BadResponse")]
+        public IActionResult BadResponse(ClsBadResponseM Objbadres)
+        {
+            try
+            {
+                return BadResponse(Objbadres);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+
+        [HttpPost("TermPlanCalcuation")]
+        [TypeFilter(typeof(ClsCustomManipulationFilter))]
+        public IActionResult Calculate([FromBody] Urnoinvestor RequestBody)
         {
             //Calculte Applicant Date
-            DateTime DOB = DateTime.ParseExact(RequestBody.ApplicantDetails.ApplicantDateOfBirth, "yyyy-MM-dd HH:mm:ss,fff",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-            int Age = CalculateAge(DOB);
+            
 
-            List<Model.ServiceModel.Dummy> Dummy = RequestBody.AddField.Dummy;
-
-            if (RequestBody == null)
-            {
-                return BadRequest("You can't null value in payload.");
-            }
-
-
-            if (RequestBody.SumAssured >= 500000 && RequestBody.SumAssured <= 2500000 &&  string.IsNullOrEmpty(RequestBody.BenefitOption) )
-            {
-
-                if (RequestBody.SumAssured % 50000 == 0)
-                {
-                    SaralJeevanRequestModel product1 = new SaralJeevanRequestModel();
-                    var url = "https://api.example.com/data"; // Replace with your API URL from appsetting 
-                    var headers = new Dictionary<string, string>
-                    {
-                    { "Authorization", "Bearer your_token_here" }
-                    };
-                    var data = _consumeAPI.ConsumeAPI<SaralJeevanRequestModel>(HttpMethod.Post, url, product1, headers);
-                    return Ok(data);
-
-                }
-                else
-                {
-                    BadRequest("Value of Sum Assured for SUD Life Protect Shield  should be incremental of 50 thousands starting from 5 Lakhs. Kindly revise the Sum Assured");
-                }
-            }
-            else if ((RequestBody.SumAssured == 5000000 && RequestBody.BenefitOption == "Life Cover") || (RequestBody.SumAssured >= 5000000 && RequestBody.SumAssured <= 15000000 && RequestBody.BenefitOption == "Life Cover with Return of Premium") || (RequestBody.SumAssured >= 5000000 && RequestBody.SumAssured <= 50000000 && RequestBody.BenefitOption == "Life Cover with Critical Illness"))
-            {
-                if (RequestBody.SumAssured % 2500000 == 0)
-                {
-                    ProtectShieldModel product1 = new ProtectShieldModel();
-                    var url = "https://api.example.com/data"; // Replace with your API URL from appsetting 
-                    var headers = new Dictionary<string, string>
-                    {
-                    { "Authorization", "Bearer your_token_here" }
-                    };
-                    var data = _consumeAPI.ConsumeAPI<ProtectShieldModel>(HttpMethod.Post, url, product1, headers);
-                    return Ok(data);
-
-                }
-                else
-                {
-                    BadRequest("Value of Sum Assured for SUD Life Protect Shield Plus should be incremental of 25 Lakhs starting from 50 Lakhs. Kindly revise the Sum Assured");
-                }
-
-            }
-            else if (RequestBody.SumAssured >= 10000000 && RequestBody.SumAssured <= 20000000 && string.IsNullOrEmpty(RequestBody.BenefitOption))
-            {
-                if (RequestBody.SumAssured % 2500000 == 0)
-                {
-
-
-                }
-                else
-                {
-                    BadRequest("Value of Sum Assured for SUD Life Protect Shield Plus should be incremental of 25 Lakhs starting from 1 Cr. Kindly revise the Sum Assured");
-                }
-            }
-            else
-            {
-                return BadRequest("Kindly revise the Sum Assured");
-
-            }
-
-            return Ok(RequestBody);
+            return Ok(new {name = "Hello Avadhut"});
         }
 
         private static int CalculateAge(DateTime dateOfBirth)
@@ -101,6 +57,23 @@ namespace SudLife_Premiumcalculation.APILayer.API.Controller
                 age = age - 1;
 
             return age;
+        }
+
+        [HttpGet("GenerateToken")]
+        public IActionResult GenerateToken()
+        {
+            try
+            {
+                string _Token = Token.GenerateToken("BOI", "2CEF55EB764E420DAADFD047BE9DAEE1", "123456");
+
+                string _EncryptToken = EncryptDecrypt.DataToBeEncrypt("BOI", _Token, "BF6886467F3E4984BE219BC8010F382D");
+
+                return Ok(new { Token = _Token, EncryptToken = _EncryptToken});
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
 

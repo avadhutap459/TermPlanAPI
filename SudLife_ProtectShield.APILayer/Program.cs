@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NLog;
 using SudLife_ProtectShield.APILayer.API.Database;
 using SudLife_ProtectShield.APILayer.API.Global.FException;
@@ -6,6 +8,7 @@ using SudLife_ProtectShield.APILayer.API.Global.Filter;
 using SudLife_ProtectShield.APILayer.API.Service.Common;
 using SudLife_ProtectShield.APILayer.API.Service.DynamicParams;
 using SudLife_ProtectShield.APILayer.API.Service.ProtectShield;
+using SudLife_ProtectShield.APILayer.Database.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 LogManager.LoadConfiguration(string.Concat(System.Environment.CurrentDirectory, "/nlog.config"));
 
 LogManager.Configuration.Variables["mydir"] = string.Concat(System.Environment.CurrentDirectory, "/Logger");
+
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<IGenericRepo, GenericRepo>();
@@ -30,6 +34,7 @@ builder.Services.Configure<ApiBehaviorOptions>(Options =>
 
 
 });
+builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CompanyConnStr")));
 
 var app = builder.Build();
 

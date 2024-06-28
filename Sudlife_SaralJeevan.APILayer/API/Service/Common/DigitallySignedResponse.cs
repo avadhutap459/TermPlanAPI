@@ -24,7 +24,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service.Common
         }
 
 
-        public async Task<byte[]> SignDataSource(byte[] data, string source)
+        public byte[] SignDataSource(byte[] data, string source)
         {
             try
             {
@@ -32,9 +32,9 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service.Common
 
                 PathResponse pathResponse = new PathResponse();
 
-                pathResponse = await _IGenericRepo.GetPathDetails(source, Env, "Private");
+                string pathvalue = _IGenericRepo.GetPathDetails(source, Env, "Private");
 
-                string pathvalue = pathResponse.KeyPath;
+                //string pathvalue = pathResponse.KeyPath;
 
 
                 string PrivateCertiPassword = _configuration.GetSection("KEYS:PrivateCertiPassword").Value;
@@ -130,7 +130,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service.Common
         }
 
 
-        public async Task<string> DigitalsignSource(string ReceivedRequest, string Source)
+        public string DigitalsignSource(string ReceivedRequest, string Source)
         {
             string header = JwtHeaderInBase64();
 
@@ -142,7 +142,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service.Common
             var plainTextBytes1 = System.Text.Encoding.UTF8.GetBytes(JsonPayload);
 
 
-            byte[] _signdata = await SignDataSource(plainTextBytes1, Source);
+            byte[] _signdata = SignDataSource(plainTextBytes1, Source);
 
             string SignDataInBase64 = Convert.ToBase64String(_signdata);
 
@@ -160,10 +160,10 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service.Common
             return Encrypt_FinalPayload;
         }
 
-        public async Task<EncResponse> GenerateDigitalResponse(dynamic objResponse, string source)
+        public EncResponse GenerateDigitalResponse(dynamic objResponse, string source)
         {
             EncResponse response = new EncResponse();
-            response.EncryptResponseSignValue = await this.DigitalsignSource(objResponse, source);
+            response.EncryptResponseSignValue = this.DigitalsignSource(objResponse, source);
             response.CheckSum = _CommonOperations.ComputeHashFromJson(objResponse);
             return response;
 

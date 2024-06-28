@@ -23,7 +23,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Model
         public ProposerDetails ProposerDetails { get; set; }
       
         [Required]
-        public int PremiumPaymentTerm { get; set; }
+        public string PremiumPaymentTerm { get; set; }
         [Required]
         public int PolicyTerm { get; set; }
        

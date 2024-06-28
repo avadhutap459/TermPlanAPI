@@ -7,7 +7,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Model
     {
         [Required]
         [StringLength(255, MinimumLength = 0)]
-        public List<string> Message { get; set; } 
+        public string Message { get; set; } 
 
         [JsonProperty("data")]
         public string Data { get; set; } = string.Empty;

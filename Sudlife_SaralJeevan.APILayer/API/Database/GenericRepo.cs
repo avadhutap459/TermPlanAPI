@@ -108,7 +108,7 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
         }
 
 
-        public async Task<PathResponse> GetPathDetails(string Source, string Env, string KeyType)
+        public string GetPathDetails(string Source, string Env, string KeyType)
         {
             string spName = "[dbo].[StpGetCertDetails]";
             PathResponse pathResponse = new PathResponse();
@@ -125,11 +125,12 @@ namespace Sudlife_SaralJeevan.APILayer.API.Database
                     param.Add("@Source", Source);
                     param.Add("@Env", Env);
                     param.Add("@KeyType", KeyType);
-                    var result2 = (await con.QueryAsync<PathResponse>(spName, param, commandType: System.Data.CommandType.StoredProcedure, commandTimeout: 60)).FirstOrDefault();
+                    dynamic result2 = (con.Query<string>(spName, param, commandType: System.Data.CommandType.StoredProcedure, commandTimeout: 60));
 
-
-                    pathResponse.KeyPath = result2.KeyPath.ToString();
-                    return pathResponse;
+                    string keypath = result2[0];
+                    return keypath;
+                    //pathResponse.KeyPath = Convert.ToString(result2[0].KeyPath);
+                   // return pathResponse;
                 }
                 catch (Exception ex)
                 {

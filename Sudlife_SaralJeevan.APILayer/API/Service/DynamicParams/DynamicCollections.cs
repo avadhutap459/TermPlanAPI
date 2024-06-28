@@ -17,6 +17,25 @@
             return Distchannel;
         }
 
+        public string PPTSaralJeevanBima(string PremiumPaymentTerm, string PolicyTerm)
+        {
+            if (PremiumPaymentTerm == "regular pay")
+            {
+                return PremiumPaymentTerm = PolicyTerm;
+            }
+            else
+            {
+
+                Dictionary<string, string> PremiumPayment = new Dictionary<string, string>();
+
+                PremiumPayment.Add("single pay", "1");
+                PremiumPayment.Add("5 pay", "5");
+                PremiumPayment.Add("10 pay", "10");
+
+                string Premium = PremiumPayment[PremiumPaymentTerm].ToString();
+                return Premium;
+            }
+        }
         public string StaffPolicySaralJeevanBima(string StaffDist)
         {
             Dictionary<string, string> DictStaffDist = new Dictionary<string, string>();

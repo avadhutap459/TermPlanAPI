@@ -52,9 +52,11 @@ namespace Sudlife_SaralJeevan.APILayer.API.Service
 
                 string StandardAgeProof = _CommonOperations.StandardAgeProof(objPremiumRequest.StandardAgeProof.ToLower());
 
-                string PremiumPaymentTerm = _CommonOperations.ConvertToYears(Convert.ToString(objPremiumRequest.PremiumPaymentTerm));
-
                 string PolicyTerm = _CommonOperations.ConvertToYears(Convert.ToString(objPremiumRequest.PolicyTerm));
+
+                string PremiumPaymentTerm = _dynamiccoll.PPTSaralJeevanBima(objPremiumRequest.PremiumPaymentTerm.ToLower(), PolicyTerm);
+
+                
 
                 string InputMode = _dynamiccoll.InputMode(objPremiumRequest.PremiumPaymentModes.ToLower());
 
